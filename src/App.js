@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import initialContacts from './data/contacts.json';
+
 import { v4 as uuidv4 } from 'uuid';
 import ContactForm from './Components/ContactForm';
 import ContactList from './Components/ContactList';
@@ -8,12 +10,7 @@ import Container from './Components/Container';
 
 class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: initialContacts,
 
     filter: '',
   };
@@ -28,7 +25,6 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.contacts !== this.state.contacts) {
-      console.log('оновилися контакти');
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
